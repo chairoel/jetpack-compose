@@ -12,37 +12,77 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.learn.jetpack.hellojetpackcompose.ui.theme.HelloJetpackComposeTheme
+
+private val sampleName = listOf(
+    "Andre",
+    "Desta",
+    "Parto",
+    "Wendy",
+    "Komeng",
+    "Raffi Ahmad",
+    "Andhika Pratama",
+    "Vincent Ryan Rompies"
+)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             HelloJetpackComposeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Jetpack Compose",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                HelloJetpackComposeApp()
             }
         }
     }
 }
 
+@Composable
+fun HelloJetpackComposeApp() {
+    Surface(
+        modifier = Modifier.fillMaxSize(),
+        color = MaterialTheme.colorScheme.background
+    ) {
+        GreetingList(sampleName)
+    }
+}
+
+@Preview(showBackground = true, device = Devices.PIXEL_4)
+@Composable
+fun HelloJetpackComposeAppPreview() {
+    HelloJetpackComposeTheme {
+        HelloJetpackComposeApp()
+    }
+}
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun GreetingList(names: List<String>) {
+   if (names.isEmpty()){
+       Column {
+           for (name in names){
+               Greeting(name = name)
+           }
+       }
+   } else{
+       Text("No peoople to greet :(")
+   }
+}
+
+
+@Composable
+fun Greeting(name: String) {
     Row(
         modifier = Modifier.padding(8.dp),
         verticalAlignment = Alignment.CenterVertically
@@ -58,7 +98,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 text = "Hello $name!",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
-//            modifier = modifier
             )
             Text(text = "Welcome to Dicoding!")
         }
