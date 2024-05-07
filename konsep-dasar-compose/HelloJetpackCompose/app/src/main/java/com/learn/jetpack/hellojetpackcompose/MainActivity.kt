@@ -40,6 +40,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
+    Row {
+        Image(
+            painter = painterResource(R.drawable.jetpack_compose),
+            contentDescription = "Logo Jetpack Compose",
+            modifier = Modifier.size(80.dp)
+        )
         Column {
             Text(
                 text = "Hello $name!",
@@ -49,6 +55,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             )
             Text(text = "Welcome to Dicoding!")
         }
+    }
 }
 
 @Preview(showBackground = true)
