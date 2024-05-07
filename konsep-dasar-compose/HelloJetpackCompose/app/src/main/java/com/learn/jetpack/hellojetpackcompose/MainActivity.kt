@@ -40,10 +40,15 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+        Column {
+            Text(
+                text = "Hello $name!",
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+//            modifier = modifier
+            )
+            Text(text = "Welcome to Dicoding!")
+        }
 }
 
 @Preview(showBackground = true)
