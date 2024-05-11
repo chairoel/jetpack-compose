@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import com.learn.jetpack.hellojetpackcompose.ui.theme.HelloJetpackComposeTheme
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.text.font.FontStyle
 
 private val sampleName = listOf(
     "Andre",
@@ -139,7 +140,12 @@ fun Greeting(name: String) {
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold,
                 )
-                Text(text = "Welcome to Dicoding!")
+                Text(
+                    text = "Welcome to Dicoding!",
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        fontStyle = FontStyle.Italic
+                    )
+                )
             }
             IconButton(onClick = { isExpanded = !isExpanded }) {
                 Icon(
