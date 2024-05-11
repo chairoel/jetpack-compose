@@ -3,7 +3,11 @@ package com.learn.jetpack.hellojetpackcompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExpandLess
 import androidx.compose.material.icons.outlined.ExpandMore
@@ -77,13 +83,20 @@ fun HelloJetpackComposeAppPreview() {
 @Composable
 fun GreetingList(names: List<String>) {
     if (names.isNotEmpty()) {
-        Column {
-            for (name in names) {
-                Greeting(name = name)
+//        Column {
+//            for (name in names) {
+//                Greeting(name = name)
+//            }
+//        }
+        LazyColumn {
+            items(names) { name ->
+                Greeting(name)
             }
         }
     } else {
-        Text("No peoople to greet :(")
+        Box(contentAlignment = Alignment.Center) {
+            Text("No peoople to greet :(")
+        }
     }
 }
 
@@ -91,6 +104,13 @@ fun GreetingList(names: List<String>) {
 @Composable
 fun Greeting(name: String) {
     var isExpanded by remember { mutableStateOf(false) }
+    val animatedSizeDp by animateDpAsState(
+        targetValue = if (isExpanded) 120.dp else 80.dp,
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
 
     Row(
         modifier = Modifier.padding(8.dp),
@@ -99,7 +119,7 @@ fun Greeting(name: String) {
         Image(
             painter = painterResource(R.drawable.jetpack_compose),
             contentDescription = "Logo Jetpack Compose",
-            modifier = Modifier.size(80.dp)
+            modifier = Modifier.size(animatedSizeDp)
         )
         Spacer(modifier = Modifier.width(8.dp))
         Column(modifier = Modifier.weight(1f)) {
