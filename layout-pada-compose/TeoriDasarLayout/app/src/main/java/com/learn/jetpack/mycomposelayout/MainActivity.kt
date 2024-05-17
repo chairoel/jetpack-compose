@@ -370,6 +370,7 @@ fun Weight() {
                 modifier = Modifier.weight(weight = 3f, fill = false)
             )
         }
+        Spacing(24.dp)
         Row {
             ButtonWithText(text = "1", Modifier.weight(1f))
             ButtonWithText(text = "0")
