@@ -297,3 +297,16 @@ fun ButtonWithText(text: String, modifier: Modifier) {
         Text(text = text, textAlign = TextAlign.Center)
     }
 }
+
+@Composable
+fun Arrangement() {
+    Column(modifier = Modifier.fillMaxWidth()) {
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ArrangementPreview() {
+    Arrangement()
+}
