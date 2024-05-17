@@ -119,3 +119,39 @@ fun ButtonC(text: String = "C") {
         Text(text)
     }
 }
+
+@Composable
+fun RowButton() {
+    Row(modifier = Modifier.padding(16.dp)) {
+        ButtonC("")
+        Spacing()
+        ButtonC("")
+        Spacing()
+        ButtonC("")
+    }
+}
+
+@Composable
+fun ColumnButton() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        ButtonC("")
+        Spacing()
+        ButtonC("")
+        Spacing()
+        ButtonC("")
+    }
+}
+
+@Composable
+fun BoxButton() {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.padding(16.dp)) {
+        ButtonA()
+        ButtonB()
+        ButtonC("")
+    }
+}
+
+@Composable
+fun Spacing() {
+    Spacer(modifier = Modifier.padding(8.dp))
+}
