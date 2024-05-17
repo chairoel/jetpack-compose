@@ -216,3 +216,15 @@ fun ColumnAlignment() {
 fun ColumnAlignmentPreview() {
     ColumnAlignment()
 }
+
+@Composable
+fun RowAlignment() {
+    Column(modifier = Modifier.padding(16.dp)) {
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun RowAlignmentPreview() {
+    RowAlignment()
+}
