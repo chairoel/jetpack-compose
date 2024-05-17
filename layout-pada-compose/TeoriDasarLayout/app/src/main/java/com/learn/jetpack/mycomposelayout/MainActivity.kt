@@ -181,7 +181,15 @@ fun ColumnAlignment() {
             .padding(16.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-
+        Column(horizontalAlignment = Alignment.Start) {
+            Text(text = "Start")
+            Spacing()
+            ButtonA()
+            Spacing()
+            ButtonB()
+            Spacing()
+            ButtonC()
+        }
     }
 }
 
