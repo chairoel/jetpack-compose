@@ -220,6 +220,16 @@ fun ColumnAlignmentPreview() {
 @Composable
 fun RowAlignment() {
     Column(modifier = Modifier.padding(16.dp)) {
+        Row(
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Top")
+            ButtonA()
+            ButtonB()
+            ButtonC()
+        }
     }
 }
 
