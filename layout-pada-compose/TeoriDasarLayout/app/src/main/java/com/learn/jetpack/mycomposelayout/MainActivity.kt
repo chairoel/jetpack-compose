@@ -332,10 +332,26 @@ fun RowButtonMaxWidth(arrangement: Arrangement.Horizontal = Arrangement.Start) {
 
 @Composable
 fun Weight() {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .padding(16.dp)) {
-
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    ) {
+        Row {
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+        }
+        Row {
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+            ButtonWithText(text = "2", modifier = Modifier.weight(2f))
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+        }
+        Row {
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+            ButtonWithText(text = "2", modifier = Modifier.weight(2f))
+            ButtonWithText(text = "3", modifier = Modifier.weight(3f))
+        }
     }
 }
 
