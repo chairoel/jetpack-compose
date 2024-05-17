@@ -3,7 +3,6 @@ package com.learn.jetpack.mycomposelayout
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,9 +15,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -83,5 +84,38 @@ fun ContactCard() {
 fun DefaultPreview() {
     MyComposeLayoutTheme {
         ContactCard()
+    }
+}
+
+@Composable
+fun ButtonA() {
+    Button(
+        onClick = {},
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_200)),
+        modifier = Modifier.size(100.dp)
+    ) {
+        Text(text = "A")
+    }
+}
+
+@Composable
+fun ButtonB() {
+    Button(
+        onClick = {},
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_500)),
+        modifier = Modifier.size(80.dp)
+    ) {
+        Text(text = "B")
+    }
+}
+
+@Composable
+fun ButtonC(text: String = "C") {
+    Button(
+        onClick = {},
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_700)),
+        modifier = Modifier.size(60.dp)
+    ) {
+        Text(text)
     }
 }
