@@ -310,3 +310,18 @@ fun Arrangement() {
 fun ArrangementPreview() {
     Arrangement()
 }
+
+@Composable
+fun RowButtonMaxWidth(arrangement: Arrangement.Horizontal = Arrangement.Start) {
+    Row(
+        horizontalArrangement = arrangement, modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+    ) {
+        ButtonC("")
+        Spacing()
+        ButtonC("")
+        Spacing()
+        ButtonC("")
+    }
+}
