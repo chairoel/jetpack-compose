@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -45,7 +43,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ContactCard()
+                    ContactCard("Dico Wisesa")
                 }
             }
         }
@@ -53,34 +51,36 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ContactCard() {
+fun ContactCard(name: String, modifier: Modifier = Modifier) {
     Row(
-        modifier = Modifier.padding(8.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(onClick = {})
+            .padding(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box {
-            Image(
-                painter = painterResource(R.drawable.avatar1),
-                contentDescription = "Avatar",
-                modifier = Modifier
-                    .size(60.dp)
-                    .clip(CircleShape)
-            )
-            Icon(
-                imageVector = Icons.Default.CheckCircle,
-                contentDescription = "Online Status",
-                tint = Color.Green,
-                modifier = Modifier.align(Alignment.BottomEnd)
-            )
-        }
+        Image(
+            painter = painterResource(R.drawable.avatar1),
+            contentDescription = "Avatar",
+            modifier = Modifier
+                .padding(4.dp)
+                .border(2.dp, Color.Green, CircleShape)
+                .clip(CircleShape)
+                .size(60.dp)
+        )
         Spacer(modifier = Modifier.width(8.dp))
-        Column {
+        Column(modifier = Modifier.weight(1f)) {
             Text(
-                text = "Dico Wisesa",
+                text = name,
                 fontWeight = FontWeight.Bold,
             )
             Text("Online")
         }
+        Icon(
+            imageVector = Icons.Filled.Check,
+            contentDescription = null,
+            modifier = Modifier.offset(x = 8.dp, y = 30.dp)
+        )
     }
 }
 
@@ -88,6 +88,6 @@ fun ContactCard() {
 @Composable
 fun DefaultPreview() {
     MyComposeModifierTheme {
-        ContactCard()
+        ContactCard("Dico Wisesa")
     }
 }
