@@ -269,7 +269,15 @@ fun BoxAlignment() {
             .padding(16.dp)
             .fillMaxSize()
     ) {
-
+        ButtonWithText(text = "Top Start", modifier = Modifier.align(Alignment.TopStart))
+        ButtonWithText(text = "Top Center", modifier = Modifier.align(Alignment.TopCenter))
+        ButtonWithText(text = "Top End", modifier = Modifier.align(Alignment.TopEnd))
+        ButtonWithText(text = "Center Start", modifier = Modifier.align(Alignment.CenterStart))
+        ButtonWithText(text = "Center", modifier = Modifier.align(Alignment.Center))
+        ButtonWithText(text = "Center End", modifier = Modifier.align(Alignment.CenterEnd))
+        ButtonWithText(text = "Bottom Start", modifier = Modifier.align(Alignment.BottomStart))
+        ButtonWithText(text = "Bottom Center", modifier = Modifier.align(Alignment.BottomCenter))
+        ButtonWithText(text = "Bottom End", modifier = Modifier.align(Alignment.BottomEnd))
     }
 }
 
