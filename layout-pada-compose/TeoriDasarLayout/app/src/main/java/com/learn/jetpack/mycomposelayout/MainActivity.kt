@@ -241,6 +241,17 @@ fun RowAlignment() {
             ButtonB()
             ButtonC()
         }
+        Spacing()
+        Row(
+            verticalAlignment = Alignment.Bottom,
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Bottom                ")
+            ButtonA()
+            ButtonB()
+            ButtonC()
+        }
     }
 }
 
