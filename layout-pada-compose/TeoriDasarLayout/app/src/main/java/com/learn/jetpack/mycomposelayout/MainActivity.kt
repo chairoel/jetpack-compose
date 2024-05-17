@@ -199,6 +199,15 @@ fun ColumnAlignment() {
             Spacing()
             ButtonC()
         }
+        Column(horizontalAlignment = Alignment.End) {
+            Text(text = "End")
+            Spacing()
+            ButtonA()
+            Spacing()
+            ButtonB()
+            Spacing()
+            ButtonC()
+        }
     }
 }
 
