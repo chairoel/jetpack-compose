@@ -33,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.learn.jetpack.mycomposelayout.ui.theme.MyComposeLayoutTheme
 
@@ -170,8 +171,8 @@ fun BasicLayoutPreview() {
 }
 
 @Composable
-fun Spacing() {
-    Spacer(modifier = Modifier.padding(8.dp))
+fun Spacing(value: Dp = 8.dp) {
+    Spacer(modifier = Modifier.padding(value))
 }
 
 @Composable
@@ -351,6 +352,23 @@ fun Weight() {
             ButtonWithText(text = "1", modifier = Modifier.weight(1f))
             ButtonWithText(text = "2", modifier = Modifier.weight(2f))
             ButtonWithText(text = "3", modifier = Modifier.weight(3f))
+        }
+        Spacing(24.dp)
+        Row {
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+            ButtonWithText(text = "2", modifier = Modifier.weight(2f))
+            ButtonWithText(
+                text = "3 fill true",
+                modifier = Modifier.weight(weight = 3f, fill = true)
+            )
+        }
+        Row {
+            ButtonWithText(text = "1", modifier = Modifier.weight(1f))
+            ButtonWithText(text = "2", modifier = Modifier.weight(2f))
+            ButtonWithText(
+                text = "3 fill false",
+                modifier = Modifier.weight(weight = 3f, fill = false)
+            )
         }
     }
 }
