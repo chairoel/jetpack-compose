@@ -329,3 +329,18 @@ fun RowButtonMaxWidth(arrangement: Arrangement.Horizontal = Arrangement.Start) {
         ButtonC("")
     }
 }
+
+@Composable
+fun Weight() {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .padding(16.dp)) {
+
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun WeightPreview() {
+    Weight()
+}
