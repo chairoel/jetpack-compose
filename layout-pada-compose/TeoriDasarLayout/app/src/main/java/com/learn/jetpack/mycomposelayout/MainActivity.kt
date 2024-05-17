@@ -284,7 +284,7 @@ fun ButtonWithText(text: String, modifier: Modifier) {
     Button(
         onClick = {},
         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_500)),
-        modifier = modifier.size(80.dp)
+        modifier = modifier.padding(4.dp)
     ) {
         Text(text = text, textAlign = TextAlign.Center)
     }
