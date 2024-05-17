@@ -289,7 +289,7 @@ fun BoxAlignmentPreview() {
 }
 
 @Composable
-fun ButtonWithText(text: String, modifier: Modifier) {
+fun ButtonWithText(text: String, modifier: Modifier= Modifier) {
     Button(
         onClick = {},
         colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_500)),
@@ -369,6 +369,11 @@ fun Weight() {
                 text = "3 fill false",
                 modifier = Modifier.weight(weight = 3f, fill = false)
             )
+        }
+        Row {
+            ButtonWithText(text = "1", Modifier.weight(1f))
+            ButtonWithText(text = "0")
+            ButtonWithText(text = "0")
         }
     }
 }
