@@ -301,7 +301,11 @@ fun ButtonWithText(text: String, modifier: Modifier) {
 @Composable
 fun Arrangement() {
     Column(modifier = Modifier.fillMaxWidth()) {
-
+        RowButtonMaxWidth(Arrangement.Start)
+        RowButtonMaxWidth(Arrangement.End)
+        RowButtonMaxWidth(Arrangement.Center)
+        RowButtonMaxWidth(Arrangement.SpaceBetween)
+        RowButtonMaxWidth(Arrangement.SpaceEvenly)
     }
 }
 
