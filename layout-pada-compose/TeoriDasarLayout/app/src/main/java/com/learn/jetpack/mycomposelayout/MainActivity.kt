@@ -190,6 +190,15 @@ fun ColumnAlignment() {
             Spacing()
             ButtonC()
         }
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = "CenterHorizontally")
+            Spacing()
+            ButtonA()
+            Spacing()
+            ButtonB()
+            Spacing()
+            ButtonC()
+        }
     }
 }
 
