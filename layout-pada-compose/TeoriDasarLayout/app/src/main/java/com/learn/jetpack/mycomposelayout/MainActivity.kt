@@ -152,6 +152,21 @@ fun BoxButton() {
 }
 
 @Composable
+fun BasicLayout() {
+    Row(modifier = Modifier.padding(16.dp)) {
+        RowButton()
+        ColumnButton()
+        BoxButton()
+    }
+}
+
+@Preview(showBackground = true, device = "spec:parent=pixel_4,orientation=landscape")
+@Composable
+fun BasicLayoutPreview() {
+    BasicLayout()
+}
+
+@Composable
 fun Spacing() {
     Spacer(modifier = Modifier.padding(8.dp))
 }
