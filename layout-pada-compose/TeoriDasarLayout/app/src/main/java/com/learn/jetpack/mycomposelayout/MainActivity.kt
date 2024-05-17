@@ -260,3 +260,20 @@ fun RowAlignment() {
 fun RowAlignmentPreview() {
     RowAlignment()
 }
+
+@Composable
+fun BoxAlignment() {
+    Box(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxSize()
+    ) {
+
+    }
+}
+
+@Preview(showBackground = true, widthDp = 500, heightDp = 200)
+@Composable
+fun BoxAlignmentPreview() {
+    BoxAlignment()
+}
