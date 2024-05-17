@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.learn.jetpack.mycomposelayout.ui.theme.MyComposeLayoutTheme
@@ -276,4 +277,15 @@ fun BoxAlignment() {
 @Composable
 fun BoxAlignmentPreview() {
     BoxAlignment()
+}
+
+@Composable
+fun ButtonWithText(text: String, modifier: Modifier) {
+    Button(
+        onClick = {},
+        colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_500)),
+        modifier = modifier.size(80.dp)
+    ) {
+        Text(text = text, textAlign = TextAlign.Center)
+    }
 }
