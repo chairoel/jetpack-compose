@@ -225,7 +225,18 @@ fun RowAlignment() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Top")
+            Text(text = "Top                      ")
+            ButtonA()
+            ButtonB()
+            ButtonC()
+        }
+        Spacing()
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "CenterVertically")
             ButtonA()
             ButtonB()
             ButtonC()
