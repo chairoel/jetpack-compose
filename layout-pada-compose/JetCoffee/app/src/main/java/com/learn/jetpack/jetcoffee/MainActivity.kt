@@ -20,11 +20,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.learn.jetpack.jetcoffee.model.dummyCategory
 import com.learn.jetpack.jetcoffee.ui.components.CategoryItem
 import com.learn.jetpack.jetcoffee.ui.components.Search
+import com.learn.jetpack.jetcoffee.ui.components.SectionText
 import com.learn.jetpack.jetcoffee.ui.theme.JetCoffeeTheme
 
 class MainActivity : ComponentActivity() {
@@ -55,6 +57,8 @@ fun Banner(modifier: Modifier = Modifier) {
 fun JetCoffeeApp() {
     Column {
         Banner()
+        SectionText(title = stringResource(R.string.section_category))
+        CategoryRow()
     }
 }
 
