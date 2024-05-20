@@ -30,6 +30,7 @@ import com.learn.jetpack.jetcoffee.model.dummyBestSellerMenu
 import com.learn.jetpack.jetcoffee.model.dummyCategory
 import com.learn.jetpack.jetcoffee.model.dummyMenu
 import com.learn.jetpack.jetcoffee.ui.components.CategoryItem
+import com.learn.jetpack.jetcoffee.ui.components.HomeSection
 import com.learn.jetpack.jetcoffee.ui.components.MenuItem
 import com.learn.jetpack.jetcoffee.ui.components.Search
 import com.learn.jetpack.jetcoffee.ui.components.SectionText
@@ -63,12 +64,20 @@ fun Banner(modifier: Modifier = Modifier) {
 fun JetCoffeeApp() {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Banner()
-        SectionText(title = stringResource(R.string.section_category))
-        CategoryRow()
-        SectionText(title = stringResource(R.string.section_favorite_menu))
-        MenuRow(listMenu = dummyMenu)
-        SectionText(title = stringResource(R.string.section_best_seller_menu))
-        MenuRow(listMenu = dummyBestSellerMenu)
+        HomeSection(
+            title = stringResource(id = R.string.section_category),
+            content = { CategoryRow() }
+        )
+
+        HomeSection(
+            title = stringResource(R.string.section_favorite_menu),
+            content = { MenuRow(listMenu = dummyMenu) }
+        )
+
+        HomeSection(
+            title = stringResource(id = R.string.section_best_seller_menu),
+            content = { MenuRow(listMenu = dummyBestSellerMenu) }
+        )
     }
 }
 
