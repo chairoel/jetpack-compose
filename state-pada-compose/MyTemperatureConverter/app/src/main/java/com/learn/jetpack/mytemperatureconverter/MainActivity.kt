@@ -32,7 +32,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    StatefulTemperatureInput()
+                    Column {
+                        StatefulTemperatureInput()
+                        ConverterApp()
+                    }
                 }
             }
         }
@@ -61,6 +64,47 @@ fun StatefulTemperatureInput(
             }
         )
         Text(text = stringResource(id = R.string.temperature_fahrenheit, output))
+    }
+}
+
+@Composable
+fun StatelessTemperatureInput(
+    input: String,
+    output: String,
+    onValueChange: (String) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier.padding(16.dp)) {
+        Text(
+            text = stringResource(id = R.string.stateless_converter),
+            style = MaterialTheme.typography.headlineSmall
+        )
+        OutlinedTextField(
+            value = input,
+            label = { Text(stringResource(id = R.string.enter_celsius)) },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            onValueChange = onValueChange
+        )
+        Text(text = stringResource(id = R.string.temperature_fahrenheit, output))
+    }
+}
+
+@Composable
+private fun ConverterApp(
+    modifier: Modifier = Modifier,
+) {
+    var input by remember { mutableStateOf("") }
+    var output by remember { mutableStateOf("") }
+    Column(modifier) {
+        StatelessTemperatureInput(
+            input = input,
+            output = output,
+            onValueChange = {
+                input = it
+                output = if (it.isNotBlank()) convertToFahrenheit(input) else ""
+            }
+        )
+
     }
 }
 
