@@ -24,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.learn.jetpack.jetcoffee.model.Menu
+import com.learn.jetpack.jetcoffee.model.dummyBestSellerMenu
 import com.learn.jetpack.jetcoffee.model.dummyCategory
 import com.learn.jetpack.jetcoffee.model.dummyMenu
 import com.learn.jetpack.jetcoffee.ui.components.CategoryItem
@@ -62,6 +63,10 @@ fun JetCoffeeApp() {
         Banner()
         SectionText(title = stringResource(R.string.section_category))
         CategoryRow()
+        SectionText(title = stringResource(R.string.section_favorite_menu))
+        MenuRow(listMenu = dummyMenu)
+        SectionText(title = stringResource(R.string.section_best_seller_menu))
+        MenuRow(listMenu = dummyBestSellerMenu)
     }
 }
 
