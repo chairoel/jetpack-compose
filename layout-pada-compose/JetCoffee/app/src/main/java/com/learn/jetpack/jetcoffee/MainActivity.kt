@@ -16,32 +16,15 @@ import com.learn.jetpack.jetcoffee.ui.theme.JetCoffeeTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             JetCoffeeTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                JetCoffeeApp()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun JetCoffeeApp() {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    JetCoffeeTheme {
-        Greeting("Android")
-    }
 }
