@@ -1,6 +1,5 @@
 package com.learn.jetpack.jetcoffee
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -65,13 +66,16 @@ fun Banner(modifier: Modifier = Modifier) {
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun JetCoffeeApp(modifier: Modifier = Modifier) {
     Scaffold(
         bottomBar = { BottomBar() }
-    ) {
-        Column(modifier = modifier.verticalScroll(rememberScrollState())) {
+    ) { innerPadding ->
+        Column(
+            modifier = modifier
+                .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+        ) {
             Banner()
             HomeSection(
                 title = stringResource(id = R.string.section_category),
@@ -137,8 +141,13 @@ fun MenuRowPreview() {
 }
 
 @Composable
-fun BottomBar(modifier: Modifier = Modifier) {
-    NavigationBar(modifier = modifier) {
+fun BottomBar(
+    modifier: Modifier = Modifier
+) {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.background,
+        modifier = modifier
+    ) {
         val navigationItems = listOf(
             BottomBarItem(
                 title = stringResource(id = R.string.menu_home),
