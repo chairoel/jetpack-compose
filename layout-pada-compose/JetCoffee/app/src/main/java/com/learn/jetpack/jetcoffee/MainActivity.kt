@@ -3,21 +3,16 @@ package com.learn.jetpack.jetcoffee
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -33,7 +28,6 @@ import com.learn.jetpack.jetcoffee.ui.components.CategoryItem
 import com.learn.jetpack.jetcoffee.ui.components.HomeSection
 import com.learn.jetpack.jetcoffee.ui.components.MenuItem
 import com.learn.jetpack.jetcoffee.ui.components.Search
-import com.learn.jetpack.jetcoffee.ui.components.SectionText
 import com.learn.jetpack.jetcoffee.ui.theme.JetCoffeeTheme
 
 class MainActivity : ComponentActivity() {
