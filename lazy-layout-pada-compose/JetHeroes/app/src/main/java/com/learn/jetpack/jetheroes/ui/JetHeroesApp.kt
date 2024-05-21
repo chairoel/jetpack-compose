@@ -50,6 +50,7 @@ import kotlinx.coroutines.launch
 fun JetHeroesApp(
     modifier: Modifier = Modifier,
 ) {
+    //FIXME: this shouldn’t be done here
     val groupedHeroes = HeroesData.heroes
         .sortedBy { it.name }
         .groupBy { it.name[0] }
