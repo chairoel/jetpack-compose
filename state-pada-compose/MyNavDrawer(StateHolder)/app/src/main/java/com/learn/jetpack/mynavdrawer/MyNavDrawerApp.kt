@@ -52,15 +52,15 @@ data class MenuItem(val title: String, val icon: ImageVector)
 
 @Composable
 fun MyNavDrawerApp() {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
-    val snackBarHostState = remember { SnackbarHostState() }
-    val context = LocalContext.current
+//    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+//    val scope = rememberCoroutineScope()
+//    val snackBarHostState = remember { SnackbarHostState() }
+//    val context = LocalContext.current
 
-    BackPressHandler(enabled = drawerState.isOpen) {
-        scope.launch {
-            drawerState.close()
-        }
+    val appState = rememberMyNavDrawerState()
+
+    BackPressHandler(enabled = appState.drawerState.isOpen) {
+        appState.onBackPress()
     }
 
     val items = listOf(
@@ -81,22 +81,14 @@ fun MyNavDrawerApp() {
     val selectedItem = remember { mutableStateOf(items[0]) }
 
     Scaffold(
-        snackbarHost = { SnackbarHost(hostState = snackBarHostState) },
+        snackbarHost = { SnackbarHost(hostState = appState.snackbarHostState) },
         topBar = {
-            MyTopBar(onMenuClick = {
-                scope.launch {
-                    if (drawerState.isClosed) {
-                        drawerState.open()
-                    } else {
-                        drawerState.close()
-                    }
-                }
-            })
+            MyTopBar(onMenuClick =  appState::onMenuClick)
         }) { paddingValues ->
         ModalNavigationDrawer(
-            gesturesEnabled = drawerState.isOpen,
+            gesturesEnabled = appState.drawerState.isOpen,
             modifier = Modifier.padding(paddingValues),
-            drawerState = drawerState,
+            drawerState = appState.drawerState,
             drawerContent = {
                 ModalDrawerSheet {
                     Spacer(modifier = Modifier.height(12.dp))
@@ -111,25 +103,7 @@ fun MyNavDrawerApp() {
                             label = { Text(text = item.title) },
                             selected = item == selectedItem.value,
                             onClick = {
-                                scope.launch {
-                                    drawerState.close()
-                                    val snackBarResult = snackBarHostState.showSnackbar(
-                                        message = context.resources.getString(
-                                            R.string.coming_soon,
-                                            item.title
-                                        ),
-                                        actionLabel = context.resources.getString(R.string.subscribe_question),
-                                        withDismissAction = true,
-                                        duration = SnackbarDuration.Short
-                                    )
-                                    if (snackBarResult == SnackbarResult.ActionPerformed) {
-                                        Toast.makeText(
-                                            context,
-                                            context.resources.getString(R.string.subscribed_info),
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                                }
+                                appState.onItemSelected(item)
                                 selectedItem.value = item
                             },
                             modifier = Modifier.padding(horizontal = 12.dp)
@@ -145,7 +119,7 @@ fun MyNavDrawerApp() {
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        if (drawerState.isClosed) {
+                        if (appState.drawerState.isClosed) {
                             stringResource(id = R.string.swipe_to_open)
                         } else {
                             stringResource(id = R.string.swipe_to_close)
