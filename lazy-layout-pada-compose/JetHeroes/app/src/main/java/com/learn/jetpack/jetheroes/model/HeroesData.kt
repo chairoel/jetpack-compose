@@ -1,6 +1,6 @@
 package com.learn.jetpack.jetheroes.model
 
-object HeroData {
+object HeroesData {
     val heroes = listOf(
         Hero(
             "1",
