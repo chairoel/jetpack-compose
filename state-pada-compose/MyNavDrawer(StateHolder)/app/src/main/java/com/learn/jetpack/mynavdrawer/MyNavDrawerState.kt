@@ -3,9 +3,15 @@ package com.learn.jetpack.mynavdrawer
 import android.content.Context
 import android.widget.Toast
 import androidx.compose.material3.DrawerState
+import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -49,4 +55,14 @@ class MyNavDrawerState(
             }
         }
     }
+}
+
+@Composable
+fun rememberMyNavDrawerState(
+    drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed),
+    coroutinesScope: CoroutineScope = rememberCoroutineScope(),
+    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
+    context: Context = LocalContext.current
+): MyNavDrawerState = remember(drawerState, coroutinesScope, snackbarHostState, context) {
+    MyNavDrawerState(drawerState, coroutinesScope, snackbarHostState, context)
 }
