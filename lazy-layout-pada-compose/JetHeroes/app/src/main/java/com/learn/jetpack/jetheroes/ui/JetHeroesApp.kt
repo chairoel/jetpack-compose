@@ -5,6 +5,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -44,6 +45,7 @@ import com.learn.jetpack.jetheroes.model.HeroesData
 import com.learn.jetpack.jetheroes.ui.theme.JetHeroesTheme
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun JetHeroesApp(
     modifier: Modifier = Modifier,
@@ -63,12 +65,16 @@ fun JetHeroesApp(
             state = listState,
             contentPadding = PaddingValues(bottom = 80.dp)
         ) {
-            items(HeroesData.heroes, key = { it.id }) { hero ->
-                HeroListItem(
-                    name = hero.name,
-                    photoUrl = hero.photoUrl,
-                    modifier = Modifier.fillMaxWidth()
-                )
+            groupedHeroes.forEach { (initial, heroes) ->
+                stickyHeader { CharacterHeader(char = initial) }
+
+                items(heroes, key = { it.id }) { hero ->
+                    HeroListItem(
+                        name = hero.name,
+                        photoUrl = hero.photoUrl,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
         }
 
