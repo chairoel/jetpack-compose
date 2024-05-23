@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.jetreward.ui.navigation.NavigationItem
 import com.dicoding.jetreward.ui.navigation.Screen
 import com.dicoding.jetreward.ui.theme.JetRewardTheme
@@ -22,9 +24,10 @@ import com.dicoding.jetreward.ui.theme.JetRewardTheme
 @Composable
 fun JetRewardApp(
     modifier: Modifier = Modifier,
+    navController: NavController = rememberNavController()
 ) {
     Scaffold(
-        bottomBar = { BottomBar() },
+        bottomBar = { BottomBar(navController = navController) },
         modifier = modifier
     ) { innerPadding ->
 
@@ -33,6 +36,7 @@ fun JetRewardApp(
 
 @Composable
 private fun BottomBar(
+    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(modifier = modifier) {
