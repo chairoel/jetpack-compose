@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.jetreward.ui.navigation.NavigationItem
@@ -81,7 +82,15 @@ private fun BottomBar(
                 icon = { Icon(imageVector = item.icon, contentDescription = item.title) },
                 label = { Text(text = item.title) },
                 selected = false,
-                onClick = {},
+                onClick = {
+                          navController.navigate(item.screen.route){
+                              popUpTo(navController.graph.findStartDestination().id){
+                                  saveState = true
+                              }
+                              restoreState = true
+                              launchSingleTop = true
+                          }
+                },
             )
         }
     }
