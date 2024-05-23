@@ -25,6 +25,8 @@ import androidx.navigation.compose.composable
 import com.dicoding.jetreward.ui.screen.cart.CartScreen
 import com.dicoding.jetreward.ui.screen.home.HomeScreen
 import com.dicoding.jetreward.ui.screen.profile.ProfileScreen
+import androidx.compose.runtime.getValue
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun JetRewardApp(
@@ -40,13 +42,13 @@ fun JetRewardApp(
             startDestination = Screen.Home.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(Screen.Home.route){
+            composable(Screen.Home.route) {
                 HomeScreen()
             }
-            composable(Screen.Cart.route){
+            composable(Screen.Cart.route) {
                 CartScreen()
             }
-            composable(Screen.Profile.route){
+            composable(Screen.Profile.route) {
                 ProfileScreen()
             }
         }
@@ -59,6 +61,10 @@ private fun BottomBar(
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(modifier = modifier) {
+
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
         val navigationItems = listOf(
             NavigationItem(
                 title = stringResource(R.string.menu_home),
@@ -81,15 +87,15 @@ private fun BottomBar(
             NavigationBarItem(
                 icon = { Icon(imageVector = item.icon, contentDescription = item.title) },
                 label = { Text(text = item.title) },
-                selected = false,
+                selected = currentRoute == item.screen.route,
                 onClick = {
-                          navController.navigate(item.screen.route){
-                              popUpTo(navController.graph.findStartDestination().id){
-                                  saveState = true
-                              }
-                              restoreState = true
-                              launchSingleTop = true
-                          }
+                    navController.navigate(item.screen.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        restoreState = true
+                        launchSingleTop = true
+                    }
                 },
             )
         }
