@@ -1,5 +1,6 @@
 package com.dicoding.jetreward
 
+import android.annotation.SuppressLint
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
@@ -7,6 +8,7 @@ import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,10 +18,17 @@ import com.dicoding.jetreward.ui.navigation.NavigationItem
 import com.dicoding.jetreward.ui.navigation.Screen
 import com.dicoding.jetreward.ui.theme.JetRewardTheme
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun JetRewardApp(
     modifier: Modifier = Modifier,
 ) {
+    Scaffold(
+        bottomBar = { BottomBar() },
+        modifier = modifier
+    ) { innerPadding ->
+
+    }
 }
 
 @Composable
