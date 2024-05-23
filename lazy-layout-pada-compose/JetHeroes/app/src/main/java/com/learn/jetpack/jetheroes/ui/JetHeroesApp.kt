@@ -1,11 +1,13 @@
 package com.learn.jetpack.jetheroes.ui
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -50,7 +52,6 @@ import com.learn.jetpack.jetheroes.data.HeroRepository
 import com.learn.jetpack.jetheroes.ui.theme.JetHeroesTheme
 import kotlinx.coroutines.launch
 import androidx.compose.material3.SearchBar
-import kotlin.math.min
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -59,6 +60,7 @@ fun JetHeroesApp(
     viewModel: JetHeroesViewModel = viewModel(factory = ViewModelFactory(HeroRepository()))
 ) {
     val groupedHeroes by viewModel.groupedHeroes.collectAsState()
+    val query by viewModel.query
 
     Box(modifier = modifier) {
         val scope = rememberCoroutineScope()
@@ -71,6 +73,14 @@ fun JetHeroesApp(
             state = listState,
             contentPadding = PaddingValues(bottom = 80.dp)
         ) {
+
+            item {
+                SearchBar(
+                    query = query,
+                    onQueryChange = viewModel::search,
+                    modifier = Modifier.background(MaterialTheme.colorScheme.primary)
+                )
+            }
             groupedHeroes.forEach { (initial, heroes) ->
                 stickyHeader { CharacterHeader(char = initial) }
 
@@ -78,7 +88,9 @@ fun JetHeroesApp(
                     HeroListItem(
                         name = hero.name,
                         photoUrl = hero.photoUrl,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .animateItemPlacement(tween(durationMillis = 100))
                     )
                 }
             }
