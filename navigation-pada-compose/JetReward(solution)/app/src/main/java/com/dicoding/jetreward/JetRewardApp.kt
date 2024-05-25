@@ -161,6 +161,7 @@ private fun shareOrder(context: Context, summary: String) {
         type = "text/plain"
         putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.dicoding_reward))
         putExtra(Intent.EXTRA_TEXT, summary)
+        putExtra(Intent.EXTRA_EMAIL, arrayOf("test@dicoding.com"))
     }
 
     context.startActivity(Intent.createChooser(intent, context.getString(R.string.dicoding_reward)))
