@@ -28,6 +28,7 @@ import com.dicoding.jetreward.ui.screen.cart.CartScreen
 import com.dicoding.jetreward.ui.screen.home.HomeScreen
 import com.dicoding.jetreward.ui.screen.profile.ProfileScreen
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
@@ -62,7 +63,12 @@ fun JetRewardApp(
                 )
             }
             composable(Screen.Cart.route) {
-                CartScreen()
+                val context = LocalContext.current
+                CartScreen(
+                    onOrderButtonCLicked = { message ->
+                        shareOrder(context, message)
+                    }
+                )
             }
             composable(Screen.Profile.route) {
                 ProfileScreen()
