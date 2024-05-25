@@ -1,5 +1,6 @@
 package com.dicoding.jetreward.ui.screen.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -24,6 +25,7 @@ fun HomeScreen(
             Injection.provideRepository()
         )
     ),
+    navigateToDetail: (Long) -> Unit,
 ) {
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let {
         when (it) {
@@ -34,7 +36,8 @@ fun HomeScreen(
             is UiState.Success -> {
                 HomeContent(
                     orderReward = it.data,
-                    modifier = modifier
+                    modifier = modifier,
+                    navigateToDetail = navigateToDetail,
                 )
             }
 
@@ -46,7 +49,8 @@ fun HomeScreen(
 @Composable
 fun HomeContent(
     orderReward: List<OrderReward>,
-    modifier: Modifier
+    modifier: Modifier,
+    navigateToDetail: (Long) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(160.dp),
@@ -59,7 +63,10 @@ fun HomeContent(
             RewardItem(
                 image = data.reward.image,
                 title = data.reward.title,
-                requiredPoint = data.reward.requiredPoint
+                requiredPoint = data.reward.requiredPoint,
+                modifier = Modifier.clickable {
+                    navigateToDetail(data.reward.id)
+                }
             )
 
         }
