@@ -34,7 +34,8 @@ import com.dicoding.jetreward.ui.components.OrderButton
 fun CartScreen(
     viewModel: CartViewModel = viewModel(
         factory = ViewModelFactory(Injection.provideRepository())
-    )
+    ),
+    onOrderButtonCLicked: (String) -> Unit,
 ) {
     viewModel.uiState.collectAsState(initial = UiState.Loading).value.let {
         when (it) {
@@ -47,7 +48,9 @@ fun CartScreen(
                     state = it.data,
                     onProductCountChanged = { rewardId, count ->
                         viewModel.updateOrderReward(rewardId, count)
-                    })
+                    },
+                    onOrderButtonCLicked = onOrderButtonCLicked
+                )
             }
 
             is UiState.Error -> {}
@@ -60,6 +63,7 @@ fun CartScreen(
 fun CartContent(
     state: CartState,
     onProductCountChanged: (id: Long, count: Int) -> Unit,
+    onOrderButtonCLicked: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val shareMessage = stringResource(
@@ -101,7 +105,7 @@ fun CartContent(
         OrderButton(
             text = stringResource(id = R.string.total_order, state.totalRequiredPoint),
             enabled = state.orderReward.isNotEmpty(),
-            onClick = {},
+            onClick = { onOrderButtonCLicked(shareMessage) },
             modifier = Modifier.padding(16.dp)
         )
     }
